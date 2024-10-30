@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background-color: wheat;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .dps {
+            color: tomato;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Hello Vue!</h1>
+    <div id="app">
+        <div v-if="showBooks">
+            <p>{{title}} - {{author}} - {{published_date}} - {{score}}</p>
+            <button v-on:click="score++">
+                Increase Score
+            </button>
+
+            <button v-on:click="score--">
+                Decrease Score
+            </button>
+
+            <div @click="changeTitle('The Ascendance Series')">Change Title</div>
+        </div>
+        <button @click="toggleBookDisplay">
+            <span v-if="showBooks">
+                Hide Books
+            </span>
+            <span v-else>
+                Show Books
+            </span>
+        </button>
+
+        <div v-show="showBooks">Currently showing books</div>
+        <br/>
+
+        <h3>
+            Quicken Team
+        </h3>
+        <ul>
+            <li v-for="character in characters" :class="{dps: character.isDPS}">
+                <div>{{character.name}} - {{character.element}}</div>
+                <img :src="character.img_source" :alt="character.name"/>
+            </li>
+        </ul>
+
+        <div>
+            {{ filteredCharacters }}
+        </div>
+        <div class="box" @mouseover="handleEvent($event, 5)">Mouseover</div>
+        <div class="box" @mouseleave="handleEvent">Mouseleave</div>
+        <div class="box" @dblclick="handleEvent">Double click</div>
+        <div class="box" @mousemove="handleMouseChange">Position - {{x}},{{y}}</div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>
